@@ -50,7 +50,7 @@ jobs:
         if: ${{ always() }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: './build/reports/gatling'
+          publish_dir: './report.html'
           keep_files: true
           user_name: elmer-zapata-mojix-com
           user_email: elmer.zapata@mojix.com
