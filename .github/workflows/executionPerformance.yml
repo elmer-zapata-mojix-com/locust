@@ -1,0 +1,47 @@
+name: Execution Performance
+
+on:
+  workflow_dispatch:
+    inputs:
+      testSuite:
+        type: string
+        description: 'testSuite'
+        required: true
+        default: 'pokemonapi.PokemonApiTest'
+      concurrent:
+        type: string
+        description: 'Quantity of users'
+        required: true
+        default: '10'
+
+jobs:
+  execpokemonapi:
+    runs-on: ubuntu-latest
+    name: Execution Performance Pokemon API
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Run Load Test
+        uses: apardo04/locust-github-action@master
+        with:
+          LOCUSTFILE: "locustfile.py"
+          REQUIREMENTS: "requirements.txt"
+          URL:  "https://pokeapi.co "
+          USERS: "10"
+          RATE: "5"
+          RUNTIME: "10s"
+
+      - name: Save report
+        if: ${{always()}}
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: gatling report
+          path: ./build/reports/gatling
+
+
