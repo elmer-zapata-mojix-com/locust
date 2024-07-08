@@ -36,12 +36,13 @@ jobs:
           USERS: "10"
           RATE: "5"
           RUNTIME: "10s"
+          HTML: "report.html"
 
       - name: Save report
         if: ${{always()}}
         uses: actions/upload-artifact@v3.1.2
         with:
           name: gatling report
-          path: ./build/reports/gatling
+          path: ./report.html
 
 
