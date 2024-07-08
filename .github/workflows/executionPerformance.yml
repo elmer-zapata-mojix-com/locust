@@ -36,14 +36,14 @@ jobs:
           USERS: "10"
           RATE: "5"
           RUNTIME: "10s"
-          html: "report.html"
+          html: "index.html"
 
       - name: Save report
         if: ${{always()}}
         uses: actions/upload-artifact@v3.1.2
         with:
           name: gatling report
-          path: ./report.html
+          path: ./index.html
 
       - name: "Publish test results"
         uses: peaceiris/actions-gh-pages@v3.7.3
