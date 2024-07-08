@@ -28,7 +28,7 @@ jobs:
           python-version: 3.8
 
       - name: Run Load Test
-        uses: apardo04/locust-github-action@master
+        uses: elmer-zapata-mojix-com/locust-github-action@master
         with:
           LOCUSTFILE: "locustfile.py"
           REQUIREMENTS: "requirements.txt"
@@ -36,7 +36,7 @@ jobs:
           USERS: "10"
           RATE: "5"
           RUNTIME: "10s"
-          HTML: "report.html"
+          html: "report.html"
 
       - name: Save report
         if: ${{always()}}
